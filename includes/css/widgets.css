@@ -1,0 +1,50 @@
+.mp-stacks-widgets{
+	display:inline-block;
+	text-align:left;
+}
+.mp-stacks-widgets-item{
+	padding-right:20px;	
+	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+	-moz-box-sizing: border-box;    /* Firefox, other Gecko */
+	box-sizing: border-box;         /* Opera/IE 8+ */
+}
+.mp-stacks-widgets a{
+	text-decoration:none;	
+}
+.mp-stacks-widgets .mp-stacks-widgets-item{
+	float:left;	
+}
+.mp-stacks-widgets ul{
+	list-style:inside disc none;
+	margin:0px;
+	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+	-moz-box-sizing: border-box;    /* Firefox, other Gecko */
+	box-sizing: border-box;         /* Opera/IE 8+ */
+}
+.mp-stacks-widgets-menu .sub-menu li:last-child{
+	margin-bottom:0px!important;
+	
+}
+.mp-stacks-widgets .sub-menu{
+	margin:0px 0px 0px 20px;
+	max-height: 0px;
+	overflow:hidden;
+	
+	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+	-moz-box-sizing: border-box;    /* Firefox, other Gecko */
+	box-sizing: border-box;         /* Opera/IE 8+ */
+	
+	transition: all 0.5s ease;	
+	-webkit-transition: all 0.5s ease;	
+	-moz-transition: all 0.5s ease;	
+}
+.mp-stacks-widgets li:hover > .sub-menu{
+	max-height:900px;
+}
+.mp-stacks-widgets-item-clearedfix:after {
+	content: ".";
+	visibility: hidden;
+	display: block;
+	height: 0;
+	clear: both;
+}
