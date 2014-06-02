@@ -157,7 +157,7 @@ function mp_stacks_widgets_create_meta_box(){
 		array(
 			'field_id'			=> 'manage_sidebar',
 			'field_title' 	=> __( 'Manage Widget Area for this Brick', 'mp_stacks_widgets'),
-			'field_description' 	=> '<br /><a href="' . admin_url( 'widgets.php' ) . '" target="_blank" class="button">' . __( 'Manage Widgets', 'mp_stacks_widgets' ) . '</a>',
+			'field_description' 	=> '<br />',
 			'field_type' 	=> 'basictext',
 			'field_value' => '',
 		)

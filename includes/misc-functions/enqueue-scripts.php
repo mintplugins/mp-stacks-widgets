@@ -29,15 +29,8 @@ function mp_stacks_widgets_enqueue_scripts(){
 			
 	//Enqueue widgets CSS
 	wp_enqueue_style( 'mp_stacks_widgets_css', plugins_url( 'css/widgets.css', dirname( __FILE__ ) ) );
-	
-	//Enqueue widgets CSS
-	wp_enqueue_script( 'mp_stacks_widgets_js', plugins_url( 'js/widgets.js', dirname( __FILE__ ) ), array( 'jquery', 'mp_stacks_front_end_js' ) );
 
 }
- 
-/**
- * Enqueue css face for widgets
- */
 add_action( 'wp_enqueue_scripts', 'mp_stacks_widgets_enqueue_scripts' );
 
 /**
@@ -49,10 +42,9 @@ function mp_stacks_widgets_admin_enqueue_scripts(){
 	
 	//Enqueue Admin Features CSS
 	wp_enqueue_style( 'mp_stacks_widgets_css', plugins_url( 'css/admin-widgets.css', dirname( __FILE__ ) ) );
+	
+	//Enqueue widgets JS
+	wp_enqueue_script( 'mp_stacks_widgets_js', plugins_url( 'js/widgets-admin.js', dirname( __FILE__ ) ), array( 'jquery' ) );
 
 }
- 
-/**
- * Enqueue css face for widgets
- */
 add_action( 'admin_enqueue_scripts', 'mp_stacks_widgets_admin_enqueue_scripts' );
