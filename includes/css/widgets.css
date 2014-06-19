@@ -1,6 +1,7 @@
 .mp-stacks-widgets{
 	display:inline-block;
 	text-align:left;
+	width:100%;
 }
 .mp-stacks-widgets-item{
 	padding-right:20px;	

@@ -4,7 +4,7 @@ Donate link: http://mintplugins.com/
 Tags: message bar, header
 Requires at least: 3.5
 Tested up to: 3.8.1
-Stable tag: 1.0.0.1
+Stable tag: 1.0.0.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -33,6 +33,9 @@ See full instructions at http://mintplugins.com/doc/mp-stacks
 
 == Changelog ==
 
+
+= 1.0.0.2 = June 18, 2014
+* Show widget area in iframe on Brick’s edit page.
 
 = 1.0.0.1 = June 2, 2014
 * Make sure that the sidebar is registered when the user changes the content type to widgets. We use ajax and a jquery trigger in MP Stacks (mp_stacks_content_type_change) to handle this.

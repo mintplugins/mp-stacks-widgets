@@ -3,7 +3,7 @@
 Plugin Name: MP Stacks + Widgets
 Plugin URI: http://mintplugins.com/plugins/mp-stacks-widgets
 Description: Show widgets on any page, at any time, anywhere on your website. Just put make a brick using “MP Stacks”, put the stack on a page, and set the brick’s Content-Type to be “Widgets”.
-Version: 1.0.0.1
+Version: 1.0.0.2
 Author: Mint Plugins
 Author URI: http://mintplugins.com
 Text Domain: mp_stacks_widgets

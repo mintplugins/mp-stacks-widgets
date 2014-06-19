@@ -11,6 +11,31 @@
  * @license    http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @author     Philip Johnston
  */
+
+/**
+ * Unregister all sidebars if the URL variable to unset them is set. 
+ * This is so that after, we can register a single sidebar on the brick's edit screen so there is no confusion about which sidebar is the right one.
+ *
+ * @access   public
+ * @since    1.0.0
+ * @return   void
+ */
+function mp_stacks_widgets_unregister_all_sidebars(){
+	
+	if ( !isset( $_GET['unregister_all_widgets'] ) ){
+		return;
+	}
+	
+	if ( !empty( $GLOBALS['wp_registered_sidebars'] ) ){
+		
+		foreach( $GLOBALS['wp_registered_sidebars'] as $sidebar_id => $sidebar ){
+			unregister_sidebar( $sidebar_id );	
+		}
+	
+	}
+	 
+}
+add_action( 'widgets_init', 'mp_stacks_widgets_unregister_all_sidebars', 100 );
  
 /**
  * Register the sidebars we need
@@ -41,7 +66,7 @@ function mp_stacks_register_sidebars(){
 	}
 	
 }
-add_action( 'widgets_init', 'mp_stacks_register_sidebars' );
+add_action( 'widgets_init', 'mp_stacks_register_sidebars', 101 );
 
 /**
  * Generate Transients with info about what sidebars need to be generated
@@ -149,8 +174,9 @@ function mp_stacks_ajax_set_sidebars_transient(){
 	//Set that we are running this now. This way we don't check again until 24 hours OR if we generate another sidebar.
 	set_site_transient( 'mp_stacks_sidebar_args_timer', time() );				
 	
-	//Get the registered sidebars
-	$mp_stacks_sidebars = get_site_transient( 'mp_stacks_sidebar_args' );
+	//Set the registered sidebars to be blank. We only need to show the sidebar for this brick on the next page load - which is all this affects.
+	//$mp_stacks_sidebars = get_site_transient( 'mp_stacks_sidebar_args' );
+	$mp_stacks_sidebars = array();
 	
 	//Get the brick ID and set the name of the new sidebar
 	$post_id = $_POST['mp_stacks_widgets_brick_id'];			
@@ -173,7 +199,7 @@ function mp_stacks_ajax_set_sidebars_transient(){
 	set_site_transient( 'mp_stacks_sidebar_args', $mp_stacks_sidebars );
 	
 	//Give a "Manage Widgets" button to the meta field for the user to click since their sidebar will now be available 
-	echo '<a href="' . admin_url( 'widgets.php' ) . '" target="_blank" class="button">' . __( 'Manage Widgets', 'mp_stacks_widgets' ) . '</a>';
+	echo '<iframe src="' . add_query_arg( array( 'mp-stacks-minimal-admin' => true, 'unregister_all_widgets' => true ), admin_url( 'widgets.php' ) ) . '" target="_blank" width="100%" height="500px" frameborder="0" scrolling="no" onload=\'javascript:mp_stacks_resizeIframe(this);\'>' . __( 'Manage Widgets', 'mp_stacks_widgets' ) . '</a>';
 	
 	die();
 	

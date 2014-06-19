@@ -30,7 +30,7 @@ function mp_stacks_brick_content_output_css_widgets( $css_output, $post_id, $fir
 	
 	//Get Widgets Per Row
 	$widgets_per_row = get_post_meta( $post_id, 'widgets_per_row', true );
-	$widgets_per_row = empty( $widgets_per_row ) ? 2 : $widgets_per_row;
+	$widgets_per_row = empty( $widgets_per_row ) ? 1 : $widgets_per_row;
 	
 	//Widget Spacing Below Title
 	$widgets_title_bottom_margin = get_post_meta( $post_id, 'widgets_title_bottom_margin', true );
@@ -52,13 +52,16 @@ function mp_stacks_brick_content_output_css_widgets( $css_output, $post_id, $fir
 	$widgets_title_size = get_post_meta( $post_id, 'widgets_title_size', true );
 	$widgets_title_size = empty( $widgets_title_size ) ? 'inherit' : $widgets_title_size . 'px';
 	
-	//Text Size
+	//Text Color
 	$widgets_text_color = get_post_meta( $post_id, 'widgets_text_color', true );
 	$widgets_text_color = empty( $widgets_text_color ) ? 'inherit' : $widgets_text_color . '';
 	
 	//Text Size
 	$widgets_text_size = get_post_meta( $post_id, 'widgets_text_size', true );
 	$widgets_text_size = empty( $widgets_text_size ) ? 'inherit' : $widgets_text_size . 'px';
+	
+	//Text Line Height
+	$widgets_text_line_height = $widgets_text_size == 'inherit' ? 'inherit' : ( $widgets_text_size + $widgets_text_bottom_margin ) . 'px';
 	
 	//Link Color
 	$widgets_links_color = get_post_meta( $post_id, 'widgets_links_color', true );
@@ -82,7 +85,7 @@ function mp_stacks_brick_content_output_css_widgets( $css_output, $post_id, $fir
 	#mp-brick-' . $post_id . ' .mp-stacks-widgets-item div,
 	#mp-brick-' . $post_id . ' .mp-stacks-widgets-item p{
 		font-size:' . $widgets_text_size .';
-		line-height:'  . ( $widgets_text_size + $widgets_text_bottom_margin ) .'px;
+		line-height:'  . $widgets_text_line_height . ';
 		color: ' . $widgets_text_color . ';
 	}
 	#mp-brick-' . $post_id . ' .mp-stacks-widgets-item li a{
