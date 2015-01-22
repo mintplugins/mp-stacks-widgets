@@ -23,14 +23,6 @@
  */
 function mp_stacks_widgets_create_meta_box(){
 	
-	//Get current page
-	$current_page = get_current_screen();
-	
-	//Only load if we are on an mp_brick page
-	if ( $current_page->id != 'mp_brick' ){
-		return;	
-	}
-	
 	$menus = wp_get_nav_menus( array('orderby' => 'name') );
 	
 	foreach ( $menus as $menu ){
@@ -59,7 +51,7 @@ function mp_stacks_widgets_create_meta_box(){
 			'field_title' 	=> __( 'Widgets Per Row', 'mp_stacks_widgets'),
 			'field_description' 	=> __( 'How many widgets should there be per row?', 'mp_stacks_widgets' ),
 			'field_type' 	=> 'number',
-			'field_value' => '',
+			'field_value' => '3',
 		),
 		array(
 			'field_id'			=> 'widgets_title_showhider',
@@ -79,17 +71,17 @@ function mp_stacks_widgets_create_meta_box(){
 			array(
 				'field_id'			=> 'widgets_title_size',
 				'field_title' 	=> __( 'Widgets Title Size', 'mp_stacks_widgets'),
-				'field_description' 	=> __( 'Enter the text size the titles will be (leave blank for theme default)', 'mp_stacks_widgets' ),
+				'field_description' 	=> __( 'Enter the text size the titles will be. Default: 25', 'mp_stacks_widgets' ),
 				'field_type' 	=> 'number',
-				'field_value' => '',
+				'field_value' => '25',
 				'field_showhider' => 'widgets_title_showhider',
 			),
 			array(
 				'field_id'			=> 'widgets_title_bottom_margin',
 				'field_title' 	=> __( 'Spacing Below Title', 'mp_stacks_widgets'),
-				'field_description' 	=> __( 'How much space would you like to have in between the title and the widgets? (In Pixels)', 'mp_stacks_widgets' ),
+				'field_description' 	=> __( 'How much space would you like to have in between the title and the widgets? Default: 10', 'mp_stacks_widgets' ),
 				'field_type' 	=> 'number',
-				'field_value' => '',
+				'field_value' => '10',
 				'field_showhider' => 'widgets_title_showhider',
 			),
 		array(
@@ -102,7 +94,7 @@ function mp_stacks_widgets_create_meta_box(){
 			array(
 				'field_id'			=> 'widgets_text_color',
 				'field_title' 	=> __( 'Text Colors', 'mp_stacks_widgets'),
-				'field_description' 	=> __( 'Select the color the text will be in all widgets.', 'mp_stacks_widgets' ),
+				'field_description' 	=> __( 'Select the color the text will be in all widgets. (Leave blank for theme default)', 'mp_stacks_widgets' ),
 				'field_type' 	=> 'colorpicker',
 				'field_value' => '',
 				'field_showhider' => 'widgets_text_showhider',
@@ -110,17 +102,17 @@ function mp_stacks_widgets_create_meta_box(){
 			array(
 				'field_id'			=> 'widgets_text_size',
 				'field_title' 	=> __( 'Text Font Size', 'mp_stacks_widgets'),
-				'field_description' 	=> __( 'Enter the text size for all widgets. (leave blank for theme default)', 'mp_stacks_widgets' ),
+				'field_description' 	=> __( 'Enter the text size for all widgets. Default: 16', 'mp_stacks_widgets' ),
 				'field_type' 	=> 'number',
-				'field_value' => '',
+				'field_value' => '16',
 				'field_showhider' => 'widgets_text_showhider',
 			),
 			array(
 				'field_id'			=> 'widgets_text_bottom_margin',
 				'field_title' 	=> __( 'Spacing Between Lines', 'mp_stacks_widgets'),
-				'field_description' 	=> __( 'How much space would you like to have in between each text line in the widgets? (In Pixels)', 'mp_stacks_widgets' ),
+				'field_description' 	=> __( 'How much space would you like to have in between each text line in the widgets? Default: 5', 'mp_stacks_widgets' ),
 				'field_type' 	=> 'number',
-				'field_value' => '',
+				'field_value' => '5',
 				'field_showhider' => 'widgets_text_showhider',
 			),
 		array(
@@ -155,6 +147,22 @@ function mp_stacks_widgets_create_meta_box(){
 				'field_showhider' => 'widgets_links_showhider',
 			),
 		array(
+			'field_id'			=> 'widgets_lists_showhider',
+			'field_title' 	=> __( 'Widgets List Styling', 'mp_stacks_widgets'),
+			'field_description' 	=> __( '', 'mp_stacks_widgets' ),
+			'field_type' 	=> 'showhider',
+			'field_value' => '',
+		),
+			array(
+				'field_id'			=> 'widgets_list_item_spacing',
+				'field_title' 	=> __( 'List Item Spacing', 'mp_stacks_widgets'),
+				'field_description' 	=> __( 'Enter the amount of space between list items. Default: 15', 'mp_stacks_widgets' ),
+				'field_type' 	=> 'number',
+				'field_value' => '15',
+				'field_showhider' => 'widgets_lists_showhider',
+			),
+			
+		array(
 			'field_id'			=> 'manage_sidebar',
 			'field_title' 	=> __( 'Manage Widget Area for this Brick', 'mp_stacks_widgets'),
 			'field_description' 	=> '<br />',
@@ -184,4 +192,4 @@ function mp_stacks_widgets_create_meta_box(){
 	global $mp_stacks_widgets_meta_box;
 	$mp_stacks_widgets_meta_box = new MP_CORE_Metabox($mp_stacks_widgets_add_meta_box, $mp_stacks_widgets_items_array);
 }
-add_action('current_screen', 'mp_stacks_widgets_create_meta_box');
+add_action('mp_brick_metabox', 'mp_stacks_widgets_create_meta_box');
