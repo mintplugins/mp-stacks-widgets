@@ -4,7 +4,7 @@ Donate link: http://mintplugins.com/
 Tags: message bar, header
 Requires at least: 3.5
 Tested up to: 3.8.1
-Stable tag: 1.0.0.2
+Stable tag: 1.0.0.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -39,6 +39,9 @@ See full instructions at http://mintplugins.com/doc/mp-stacks
 * Meta improvements and better defaults.
 * List item spacing control added
 * Better aligned with mp stacks developer
+* Only Show Link Groups in customizer if MP Links is enabled
+* Move Logo Image into Header Area
+* Added Font and Font Size Control for the Header Navigation
 
 = 1.0.0.2 = June 18, 2014
 * Show widget area in iframe on Brick’s edit page.
