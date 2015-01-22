@@ -71,6 +71,8 @@ function mp_stacks_brick_content_output_css_widgets( $css_output, $post_id, $fir
 	$widgets_links_hover_color = get_post_meta( $post_id, 'widgets_links_hover_color', true );
 	$widgets_links_hover_color = empty( $widgets_links_hover_color ) ? 'inherit' : $widgets_links_hover_color;
 	
+	//List Item Spacing
+	$widgets_list_item_spacing = mp_core_get_post_meta( $post_id, 'widgets_list_item_spacing', 15 );
 	
 	$css_widgets_output = '#mp-brick-' . $post_id . ' .mp-stacks-widgets-item{
 		width:' . (100/$widgets_per_row) .'%;
@@ -87,6 +89,9 @@ function mp_stacks_brick_content_output_css_widgets( $css_output, $post_id, $fir
 		font-size:' . $widgets_text_size .';
 		line-height:'  . $widgets_text_line_height . ';
 		color: ' . $widgets_text_color . ';
+	}
+	#mp-brick-' . $post_id . ' li{
+		margin-bottom:' . $widgets_list_item_spacing . 'px;	
 	}
 	#mp-brick-' . $post_id . ' .mp-stacks-widgets-item li a{
 		color: ' . $widgets_links_color . ';
