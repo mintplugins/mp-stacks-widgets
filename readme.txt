@@ -34,6 +34,12 @@ See full instructions at http://mintplugins.com/doc/mp-stacks
 == Changelog ==
 
 
+= 1.0.0.3 = January 22, 2015
+* Remove admin notice about refreshing widget page.
+* Meta improvements and better defaults.
+* List item spacing control added
+* Better aligned with mp stacks developer
+
 = 1.0.0.2 = June 18, 2014
 * Show widget area in iframe on Brick’s edit page.
 
