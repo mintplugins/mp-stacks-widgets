@@ -51,7 +51,7 @@ function mp_stacks_register_sidebars(){
 	
 	//Only load if the trasient has been saved
 	if ( empty( $mp_stacks_sidebar_args_timer ) ){
-		add_action( 'admin_notices', 'mp_stacks_widgets_refresh_widget_page_notice');
+		//add_action( 'admin_notices', 'mp_stacks_widgets_refresh_widget_page_notice');
 	}
 	
 	//Get the registered sidebars
