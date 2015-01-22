@@ -16,7 +16,7 @@
 	float:left;	
 }
 .mp-stacks-widgets ul{
-	list-style:inside disc none;
+	list-style:outside disc none;
 	margin:0px;
 	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
 	-moz-box-sizing: border-box;    /* Firefox, other Gecko */
@@ -48,4 +48,8 @@
 	display: block;
 	height: 0;
 	clear: both;
+}
+.mp-stacks-widgets .post-date{
+	font-size: 80%;	
+	display:block;
 }
