@@ -3,8 +3,8 @@ Contributors: johnstonphilip
 Donate link: http://mintplugins.com/
 Tags: message bar, header
 Requires at least: 3.5
-Tested up to: 3.8.1
-Stable tag: 1.0.0.3
+Tested up to: 4.1
+Stable tag: 1.0.0.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -33,6 +33,10 @@ See full instructions at http://mintplugins.com/doc/mp-stacks
 
 == Changelog ==
 
+= 1.0.0.4 = February 10, 2015
+* Bullet point control added for widget lists.
+* Made sidebar ids based on the time and stored in the ‘mp_stacks_widgets_brick_sidebar_id’
+* This release fixes the previously broken issue of having multiple sidebars per page.
 
 = 1.0.0.3 = January 22, 2015
 * Remove admin notice about refreshing widget page.

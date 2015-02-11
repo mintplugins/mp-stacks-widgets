@@ -154,6 +154,18 @@ function mp_stacks_widgets_create_meta_box(){
 			'field_value' => '',
 		),
 			array(
+				'field_id'			=> 'widgets_list_bullet_points',
+				'field_title' 	=> __( 'List Bullet Points', 'mp_stacks_widgets'),
+				'field_description' 	=> __( 'How should the list bullet points be displayed?', 'mp_stacks_widgets' ),
+				'field_type' 	=> 'select',
+				'field_value' => 'none',
+				'field_select_values' => array( 
+					'none' => __( 'Don\'t show bullet points.', 'mp_stacks_widgets' ),
+					'show' => __( 'Show bullet points.', 'mp_stacks_widgets' ),
+				),
+				'field_showhider' => 'widgets_lists_showhider',
+			),
+			array(
 				'field_id'			=> 'widgets_list_item_spacing',
 				'field_title' 	=> __( 'List Item Spacing', 'mp_stacks_widgets'),
 				'field_description' 	=> __( 'Enter the amount of space between list items. Default: 15', 'mp_stacks_widgets' ),
@@ -161,14 +173,20 @@ function mp_stacks_widgets_create_meta_box(){
 				'field_value' => '15',
 				'field_showhider' => 'widgets_lists_showhider',
 			),
-			
+		array(
+			'field_id'			=> 'mp_stacks_widgets_brick_sidebar_id',
+			'field_title' 	=> __( 'Sidebar Unique ID (Hidden and filled out using javascript)', 'mp_stacks_widgets'),
+			'field_description' 	=> '',
+			'field_type' 	=> 'textbox',
+			'field_value' => '',
+		),	
 		array(
 			'field_id'			=> 'manage_sidebar',
 			'field_title' 	=> __( 'Manage Widget Area for this Brick', 'mp_stacks_widgets'),
 			'field_description' 	=> '<br />',
 			'field_type' 	=> 'basictext',
 			'field_value' => '',
-		)
+		),
 	);
 	
 	

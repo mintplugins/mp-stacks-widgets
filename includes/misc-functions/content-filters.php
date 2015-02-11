@@ -74,6 +74,10 @@ function mp_stacks_brick_content_output_css_widgets( $css_output, $post_id, $fir
 	//List Item Spacing
 	$widgets_list_item_spacing = mp_core_get_post_meta( $post_id, 'widgets_list_item_spacing', 15 );
 	
+	//List bullet points
+	$list_bullet_points = mp_core_get_post_meta( $post_id, 'widgets_list_bullet_points', 'none' );
+	$list_bullet_points = $list_bullet_points == 'none' ? 'none' : 'outside';
+	
 	$css_widgets_output = '#mp-brick-' . $post_id . ' .mp-stacks-widgets-item{
 		width:' . (100/$widgets_per_row) .'%;
 	}
@@ -90,8 +94,14 @@ function mp_stacks_brick_content_output_css_widgets( $css_output, $post_id, $fir
 		line-height:'  . $widgets_text_line_height . ';
 		color: ' . $widgets_text_color . ';
 	}
+	#mp-brick-' . $post_id . ' ul{
+		list-style: ' .$list_bullet_points . ';
+	}
 	#mp-brick-' . $post_id . ' li{
 		margin-bottom:' . $widgets_list_item_spacing . 'px;	
+	}
+	#mp-brick-' . $post_id . ' .sub-menu li:first-child{
+		margin-top:' . $widgets_list_item_spacing . 'px;	
 	}
 	#mp-brick-' . $post_id . ' .mp-stacks-widgets-item li a{
 		color: ' . $widgets_links_color . ';

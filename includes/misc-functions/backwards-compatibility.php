@@ -1,6 +1,6 @@
 <?php
 /**
- * This file contains the enqueue scripts function for the widgets plugin
+ * This file contains the backwqards compatibility function for the MP Stacks + Widgets plugin
  *
  * @since 1.0.0
  *
@@ -112,12 +112,7 @@ function mp_stacks_widgets_set_sidebars_transient(){
 					$title = "Brick: " . get_the_title( $brick_id );
 					//Sidebar ID
 					$sidebar_id = mp_core_get_post_meta( $brick_id, 'mp_stacks_widgets_brick_sidebar_id', 'none' );
-					
-					//If the sidebar id is empty, for backwards compatibility, use the brick title santizied
-					if ( $sidebar_id == 'none' ){
-						$sidebar_id = sanitize_title( $title );
-					}
-					
+										
 					//Add it to the widgets transient where we store all brick widgets
 					$mp_stacks_sidebars[$sidebar_id] = array(
 						'name'          => $title,

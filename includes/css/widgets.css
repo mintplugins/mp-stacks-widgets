@@ -2,6 +2,7 @@
 	display:inline-block;
 	text-align:left;
 	width:100%;
+	vertical-align:bottom;
 }
 .mp-stacks-widgets-item{
 	padding-right:20px;	
@@ -35,9 +36,9 @@
 	-moz-box-sizing: border-box;    /* Firefox, other Gecko */
 	box-sizing: border-box;         /* Opera/IE 8+ */
 	
-	transition: all 0.5s ease;	
-	-webkit-transition: all 0.5s ease;	
-	-moz-transition: all 0.5s ease;	
+	transition: all 1s ease;	
+	-webkit-transition: all 1s ease;	
+	-moz-transition: all 1s ease;	
 }
 .mp-stacks-widgets li:hover > .sub-menu{
 	max-height:900px;
