@@ -4,7 +4,7 @@ Donate link: http://mintplugins.com/
 Tags: message bar, header
 Requires at least: 3.5
 Tested up to: 4.1
-Stable tag: 1.0.0.4
+Stable tag: 1.0.0.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -32,6 +32,11 @@ See full instructions at http://mintplugins.com/doc/mp-stacks
 
 
 == Changelog ==
+
+= 1.0.0.5 = March 1, 2015
+* Added 20px of spacing between widgets when vertically stacked on screens less than 600w areas.
+* Fixed typo in main defined version variables (was MP_STACKS_WIDGETSP).
+* Added versioning to all enqueues.
 
 = 1.0.0.4 = February 10, 2015
 * Bullet point control added for widget lists.

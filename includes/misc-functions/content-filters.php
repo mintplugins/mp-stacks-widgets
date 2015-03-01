@@ -109,12 +109,6 @@ function mp_stacks_brick_content_output_css_widgets( $css_output, $post_id, $fir
 	}
 	#mp-brick-' . $post_id . ' .mp-stacks-widgets-item li a:hover{
 		color: ' . $widgets_links_hover_color . ';
-	}
-	@media screen and (max-width: 600px){
-		#mp-brick-' . $post_id . ' .mp-stacks-widgets-item{ 
-			width:100%;
-			max-width:100%;
-		}
 	}';
 	
 	return $css_widgets_output . $css_output;

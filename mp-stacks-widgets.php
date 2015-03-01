@@ -3,7 +3,7 @@
 Plugin Name: MP Stacks + Widgets
 Plugin URI: http://mintplugins.com/plugins/mp-stacks-widgets
 Description: Show widgets on any page, at any time, anywhere on your website. Just put make a brick using “MP Stacks”, put the stack on a page, and set the brick’s Content-Type to be “Widgets”.
-Version: 1.0.0.4
+Version: 1.0.0.5
 Author: Mint Plugins
 Author URI: http://mintplugins.com
 Text Domain: mp_stacks_widgets
@@ -33,20 +33,20 @@ License: GPL2
 |--------------------------------------------------------------------------
 */
 // Plugin version
-if( !defined( 'MP_STACKS_WIDGETSP_VERSION' ) )
-	define( 'MP_STACKS_WIDGETSP_VERSION', '1.0.0.4' );
+if( !defined( 'MP_STACKS_WIDGETS_VERSION' ) )
+	define( 'MP_STACKS_WIDGETS_VERSION', '1.0.0.5' );
 
 // Plugin Folder URL
-if( !defined( 'MP_STACKS_WIDGETSP_PLUGIN_URL' ) )
-	define( 'MP_STACKS_WIDGETSP_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
+if( !defined( 'MP_STACKS_WIDGETS_PLUGIN_URL' ) )
+	define( 'MP_STACKS_WIDGETS_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 
 // Plugin Folder Path
-if( !defined( 'MP_STACKS_WIDGETSP_PLUGIN_DIR' ) )
-	define( 'MP_STACKS_WIDGETSP_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
+if( !defined( 'MP_STACKS_WIDGETS_PLUGIN_DIR' ) )
+	define( 'MP_STACKS_WIDGETS_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 
 // Plugin Root File
-if( !defined( 'MP_STACKS_WIDGETSP_PLUGIN_FILE' ) )
-	define( 'MP_STACKS_WIDGETSP_PLUGIN_FILE', __FILE__ );
+if( !defined( 'MP_STACKS_WIDGETS_PLUGIN_FILE' ) )
+	define( 'MP_STACKS_WIDGETS_PLUGIN_FILE', __FILE__ );
 
 /*
 |--------------------------------------------------------------------------
@@ -65,7 +65,7 @@ if( !defined( 'MP_STACKS_WIDGETSP_PLUGIN_FILE' ) )
 function mp_stacks_widgets_textdomain() {
 
 	// Set filter for plugin's languages directory
-	$mp_stacks_widgets_lang_dir = dirname( plugin_basename( MP_STACKS_WIDGETSP_PLUGIN_FILE ) ) . '/languages/';
+	$mp_stacks_widgets_lang_dir = dirname( plugin_basename( MP_STACKS_WIDGETS_PLUGIN_FILE ) ) . '/languages/';
 	$mp_stacks_widgets_lang_dir = apply_filters( 'mp_stacks_widgets_languages_directory', $mp_stacks_widgets_lang_dir );
 
 
@@ -105,22 +105,22 @@ function mp_stacks_widgets_include_files(){
 		/**
 		 * Include Plugin Checker
 		 */
-		require( MP_STACKS_WIDGETSP_PLUGIN_DIR . '/includes/plugin-checker/class-plugin-checker.php' );
+		require( MP_STACKS_WIDGETS_PLUGIN_DIR . '/includes/plugin-checker/class-plugin-checker.php' );
 		
 		/**
 		 * Include Plugin Installer
 		 */
-		require( MP_STACKS_WIDGETSP_PLUGIN_DIR . '/includes/plugin-checker/class-plugin-installer.php' );
+		require( MP_STACKS_WIDGETS_PLUGIN_DIR . '/includes/plugin-checker/class-plugin-installer.php' );
 		
 		/**
 		 * Check if mp_core in installed
 		 */
-		require( MP_STACKS_WIDGETSP_PLUGIN_DIR . 'includes/plugin-checker/included-plugins/mp-core-check.php' );
+		require( MP_STACKS_WIDGETS_PLUGIN_DIR . 'includes/plugin-checker/included-plugins/mp-core-check.php' );
 		
 		/**
 		 * Check if mp_stacks is installed
 		 */
-		include_once( MP_STACKS_WIDGETSP_PLUGIN_DIR . 'includes/plugin-checker/included-plugins/mp-stacks.php' );
+		include_once( MP_STACKS_WIDGETS_PLUGIN_DIR . 'includes/plugin-checker/included-plugins/mp-stacks.php' );
 		
 	}
 	/**
@@ -131,22 +131,22 @@ function mp_stacks_widgets_include_files(){
 		/**
 		 * Update script - keeps this plugin up to date
 		 */
-		require( MP_STACKS_WIDGETSP_PLUGIN_DIR . 'includes/updater/mp-stacks-widgets-update.php' );
+		require( MP_STACKS_WIDGETS_PLUGIN_DIR . 'includes/updater/mp-stacks-widgets-update.php' );
 		
 		/**
 		 * enqueue scripts
 		 */
-		require( MP_STACKS_WIDGETSP_PLUGIN_DIR . 'includes/misc-functions/enqueue-scripts.php' );
+		require( MP_STACKS_WIDGETS_PLUGIN_DIR . 'includes/misc-functions/enqueue-scripts.php' );
 		
 		/**
 		 * Media Filters for widgets
 		 */
-		require( MP_STACKS_WIDGETSP_PLUGIN_DIR . 'includes/misc-functions/content-filters.php' );
+		require( MP_STACKS_WIDGETS_PLUGIN_DIR . 'includes/misc-functions/content-filters.php' );
 		
 		/**
 		 * Metabox for widgets
 		 */
-		require( MP_STACKS_WIDGETSP_PLUGIN_DIR . 'includes/metaboxes/mp-stacks-widgets-meta/mp-stacks-widgets-meta.php' );
+		require( MP_STACKS_WIDGETS_PLUGIN_DIR . 'includes/metaboxes/mp-stacks-widgets-meta/mp-stacks-widgets-meta.php' );
 		
 		/**
 		 * Add this add on to the list of Active MP Stacks Add Ons
@@ -162,12 +162,12 @@ function mp_stacks_widgets_include_files(){
 		/**
 		 * Metabox which adds widgets as a content type
 		 */
-		require( MP_STACKS_WIDGETSP_PLUGIN_DIR . 'includes/metaboxes/mp-stacks-content/mp-stacks-content.php' );
+		require( MP_STACKS_WIDGETS_PLUGIN_DIR . 'includes/metaboxes/mp-stacks-content/mp-stacks-content.php' );
 		
 		/**
 		 * Misc Functions 
 		 */
-		require( MP_STACKS_WIDGETSP_PLUGIN_DIR . 'includes/misc-functions/misc-functions.php' );
+		require( MP_STACKS_WIDGETS_PLUGIN_DIR . 'includes/misc-functions/misc-functions.php' );
 				
 	}
 }

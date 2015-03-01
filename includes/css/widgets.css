@@ -54,3 +54,12 @@
 	font-size: 80%;	
 	display:block;
 }
+
+.mp-brick[max-width~='600px'] .mp-stacks-widgets-item{
+	margin-top:20px;
+	width:100%!important;
+	max-width:100%!important;
+}
+.mp-brick[max-width~='600px'] .mp-stacks-widgets-item:first-child{
+	margin-top:0px;
+}
