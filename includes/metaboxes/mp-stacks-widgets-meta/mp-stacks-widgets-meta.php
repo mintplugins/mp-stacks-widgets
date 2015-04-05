@@ -178,7 +178,7 @@ function mp_stacks_widgets_create_meta_box(){
 			'field_title' 	=> __( 'Sidebar Unique ID (Hidden and filled out using javascript)', 'mp_stacks_widgets'),
 			'field_description' 	=> '',
 			'field_type' 	=> 'hidden', 
-			'field_value' => 'mp_stacks_widgets_sidebar_id_' . time(),
+			'field_value' => '',
 		),	
 		array(
 			'field_id'			=> 'manage_sidebar',
