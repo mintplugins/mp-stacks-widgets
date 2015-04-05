@@ -11,15 +11,8 @@ jQuery(document).ready(function($){
 			return;
 		}
 		
-		//if there is no post id, this post hasn't been saved yet:
-		if ( post_id == '' ){
-			//Create a unique id for this sidebar using the number of seconds since 1970
-			mp_stacks_widgets_brick_sidebar_id = 'mp_stacks_widgets_sidebar_id_' + ( new Date().getTime() / 1000 );
-		}
-		else{
-			//Get the sidebar's unique id from the hidden field for the sidebar id for this brick
-			mp_stacks_widgets_brick_sidebar_id = $('#mp_stacks_widgets_brick_sidebar_id').val();
-		}
+		//Get the sidebar's unique id from the hidden field for the sidebar id for this brick
+		mp_stacks_widgets_brick_sidebar_id = $('#mp_stacks_widgets_brick_sidebar_id').val();
 					
 		// Use ajax to trigger the creation of the transient
 		var postData = {
