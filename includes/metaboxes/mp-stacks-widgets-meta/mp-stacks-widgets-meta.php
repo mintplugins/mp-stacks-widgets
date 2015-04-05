@@ -177,7 +177,7 @@ function mp_stacks_widgets_create_meta_box(){
 			'field_id'			=> 'mp_stacks_widgets_brick_sidebar_id',
 			'field_title' 	=> __( 'Sidebar Unique ID (Hidden and filled out using javascript)', 'mp_stacks_widgets'),
 			'field_description' 	=> '',
-			'field_type' 	=> 'hidden',
+			'field_type' 	=> 'hidden', 
 			'field_value' => 'mp_stacks_widgets_sidebar_id_' . time(),
 		),	
 		array(
