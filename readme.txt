@@ -4,7 +4,7 @@ Donate link: http://mintplugins.com/
 Tags: message bar, header
 Requires at least: 3.5
 Tested up to: 4.1
-Stable tag: 1.0.0.6
+Stable tag: 1.0.0.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -32,6 +32,9 @@ See full instructions at http://mintplugins.com/doc/mp-stacks
 
 
 == Changelog ==
+
+= 1.0.0.7 = April 5, 2015
+* Move Sidebar ID back to JS.
 
 = 1.0.0.6 = April 5, 2015
 * Set Sidebar ID's using time() through metabox and PHP not js.
