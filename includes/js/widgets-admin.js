@@ -5,7 +5,7 @@ jQuery(document).ready(function($){
 		
 		event.preventDefault();
 		
-		console.log(content_type);
+		//console.log(content_type);
 		
 		if ( content_type != "widgets" ){
 			return;
