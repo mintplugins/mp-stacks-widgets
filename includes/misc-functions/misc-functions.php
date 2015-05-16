@@ -52,6 +52,12 @@ function mp_stacks_widgets_register_sidebars(){
 	//If our sidebar args have been set
 	if ( !empty( $mp_stacks_sidebars ) ){
 		foreach( $mp_stacks_sidebars as $mp_stacks_sidebar_args ){
+			
+			//If the sidebar id is empty, for backwards compatibility, use the brick title santizied	
+			if ( empty( $mp_stacks_sidebar_args['id'] ) ){
+				$mp_stacks_sidebar_args['id'] = sanitize_title( $mp_stacks_sidebar_args['name'] );
+			}
+						
 			//register a sidebar for each brick that needs one
 			register_sidebar( $mp_stacks_sidebar_args );
 		}
@@ -203,7 +209,7 @@ function mp_stacks_ajax_set_sidebars_transient(){
 	
 	//Give a "Manage Widgets" button to the meta field for the user to click since their sidebar will now be available 
 	echo json_encode( array( 
-		'iframe' => '<iframe src="' . add_query_arg( array( 'mp-stacks-minimal-admin' => true, 'unregister_all_widgets' => true ), admin_url( 'widgets.php' ) ) . '" target="_blank" width="100%" height="500px" frameborder="0" scrolling="no" onload=\'javascript:mp_stacks_resizeIframe(this);\'>' . __( 'Manage Widgets', 'mp_stacks_widgets' ) . '</a>',
+		'iframe' => '<iframe src="' . mp_core_add_query_arg( array( 'mp-stacks-minimal-admin' => true, 'unregister_all_widgets' => true ), admin_url( 'widgets.php' ) ) . '" target="_blank" width="100%" height="500px" frameborder="0" scrolling="no" onload=\'javascript:mp_stacks_resizeIframe(this);\'>' . __( 'Manage Widgets', 'mp_stacks_widgets' ) . '</a>',
 		'mp_stacks_widgets_brick_sidebar_id' => sanitize_title( $sidebar_id )
 		)
 	);
@@ -212,3 +218,69 @@ function mp_stacks_ajax_set_sidebars_transient(){
 	
 }
 add_action( 'wp_ajax_mp_stacks_widgets_register_sidebar', 'mp_stacks_ajax_set_sidebars_transient' );
+
+/**
+ * When the MP Stacks + Developer plugin is creating/exporting a Stack Template and we are dealing with the widget id, make it include the php (time() function
+ * This way, the Stack template will use the time when a new Stack is created as the ID - rather than using the time when the original widget Brick was created.
+ *
+ * @access   public
+ * @since    1.0.0
+ * @return   $meta_value
+ */
+function mp_stacks_widgets_developer_template_metafield_value( $meta_value, $meta_key ){
+	
+	if ( $meta_key == 'mp_stacks_widgets_brick_sidebar_id' ){
+		$meta_value = "'mp_stacks_widgets_sidebar_id_' . time()";	
+	}
+	
+	return $meta_value;
+}
+add_filter( 'mp_stacks_developer_template_metafield_value', 'mp_stacks_widgets_developer_template_metafield_value', 10, 2 );
+
+/**
+ * When creating a Stack template through the MP Stack templater function, make sure that a sidebar id is saved (if either content-type is set to be a "widget")
+ *
+ * @access   public
+ * @since    1.0.0
+ *
+ */
+function mp_stacks_widgets_add_sidebar_id_when_creating_stack_template( $brick_meta, $content_type_1, $content_type_2 ){
+	
+	//If this Brick (in this stack template) is set to have a widegt area as a Content-Type
+	if ( $content_type_1 == 'widgets' || $content_type_2 == 'widgets' ){
+		//Set the Brick's sidebar_id to be the current time (this is the time when the Stack Template was created)
+		$brick_meta['mp_stacks_widgets_brick_sidebar_id'] = 'mp_stacks_widgets_sidebar_id_' . time();
+	}
+	
+	return $brick_meta;
+	
+}
+add_filter( 'mp_stacks_template_extra_meta', 'mp_stacks_widgets_add_sidebar_id_when_creating_stack_template', 10, 3 );
+
+/**
+ * When a Brick with a Widget is deleted, remove the widget info from the WP Options table as well so it doesn't try to register a sidebar for that brick anymore.
+ *
+ * @access   public
+ * @since    1.0.0
+ * @return   void
+ */
+function mp_stacks_widgets_upon_delete_brick($post_id) { 
+	
+	//Get the Sidebar ID for this Brick
+	$sidebar_id = mp_core_get_post_meta( $post_id, 'mp_stacks_widgets_brick_sidebar_id', 'none' );
+	
+	if ( $sidebar_id == 'none' ){
+		return false;	
+	}
+		
+	//Get the registered sidebars
+	$mp_stacks_sidebars = get_option( 'mp_stacks_sidebar_args' );
+	
+	//Remove this sidebar from the list of sidebars saved in the Wp Options table
+	unset( $mp_stacks_sidebars[$sidebar_id] );
+	
+	//Update the list of sidebars to register
+	update_option( 'mp_stacks_sidebar_args', $mp_stacks_sidebars );
+
+}
+add_action( 'delete_post', 'mp_stacks_widgets_upon_delete_brick' );
