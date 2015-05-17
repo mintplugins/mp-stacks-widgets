@@ -220,24 +220,6 @@ function mp_stacks_ajax_set_sidebars_transient(){
 add_action( 'wp_ajax_mp_stacks_widgets_register_sidebar', 'mp_stacks_ajax_set_sidebars_transient' );
 
 /**
- * When the MP Stacks + Developer plugin is creating/exporting a Stack Template and we are dealing with the widget id, make it include the php (time() function
- * This way, the Stack template will use the time when a new Stack is created as the ID - rather than using the time when the original widget Brick was created.
- *
- * @access   public
- * @since    1.0.0
- * @return   $meta_value
- */
-function mp_stacks_widgets_developer_template_metafield_value( $meta_value, $meta_key ){
-	
-	if ( $meta_key == 'mp_stacks_widgets_brick_sidebar_id' ){
-		$meta_value = "'mp_stacks_widgets_sidebar_id_' . time()";	
-	}
-	
-	return $meta_value;
-}
-add_filter( 'mp_stacks_developer_template_metafield_value', 'mp_stacks_widgets_developer_template_metafield_value', 10, 2 );
-
-/**
  * When creating a Stack template through the MP Stack templater function, make sure that a sidebar id is saved (if either content-type is set to be a "widget")
  *
  * @access   public
@@ -249,13 +231,48 @@ function mp_stacks_widgets_add_sidebar_id_when_creating_stack_template( $brick_m
 	//If this Brick (in this stack template) is set to have a widegt area as a Content-Type
 	if ( $content_type_1 == 'widgets' || $content_type_2 == 'widgets' ){
 		//Set the Brick's sidebar_id to be the current time (this is the time when the Stack Template was created)
-		$brick_meta['mp_stacks_widgets_brick_sidebar_id'] = 'mp_stacks_widgets_sidebar_id_' . time();
+		$brick_meta['mp_stacks_widgets_brick_sidebar_id'] = array(
+			'value' => 'mp_stacks_widgets_sidebar_id_' . time()
+		);
 	}
 	
 	return $brick_meta;
 	
 }
 add_filter( 'mp_stacks_template_extra_meta', 'mp_stacks_widgets_add_sidebar_id_when_creating_stack_template', 10, 3 );
+
+/**
+ * When the MP Stacks + Developer plugin is creating/exporting a Stack Template and we are dealing with the widget id, make sure it includes a key for mp_stacks_widgets_brick_sidebar_id
+ * so we can find and replace that with the code so the Brick's sidebar id goes by the current time when any new stacks are created using that template.
+ * @access   public
+ * @since    1.0.0
+ * @return   $meta_value
+ */
+function mp_stacks_widgets_developer_template_metafield_value( $meta_value, $meta_key ){
+	
+	if ( $meta_key == 'mp_stacks_widgets_brick_sidebar_id' ){
+		$meta_value = "REPLACEMEWITHTHECODETOCREATETHECURRENTTIME";	
+	}
+	
+	return $meta_value;
+}
+add_filter( 'mp_stacks_developer_template_metafield_value', 'mp_stacks_widgets_developer_template_metafield_value', 10, 2 );
+
+/**
+ * When the MP Stacks + Developer plugin is creating/exporting a Stack Template find and replace the sidebar id code we just injected previously so that it creates the sidebar id 
+ * using the time() function.
+ *
+ * @access   public
+ * @since    1.0.0
+ * @return   $meta_value
+ */
+function mp_stacks_widgets_developer_find_and_replace_output( $developer_file_output ){
+	
+	$developer_file_output = str_replace( "'value' => 'REPLACEMEWITHTHECODETOCREATETHECURRENTTIME'", "'value' => 'mp_stacks_widgets_sidebar_id_' . time()", $developer_file_output );
+	
+	return $developer_file_output;
+}
+add_filter( 'mp_stacks_developer_file_output', 'mp_stacks_widgets_developer_find_and_replace_output' );
 
 /**
  * When a Brick with a Widget is deleted, remove the widget info from the WP Options table as well so it doesn't try to register a sidebar for that brick anymore.
