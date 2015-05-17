@@ -4,7 +4,7 @@ Donate link: http://mintplugins.com/
 Tags: message bar, header
 Requires at least: 3.5
 Tested up to: 4.1
-Stable tag: 1.0.0.8
+Stable tag: 1.0.0.9
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -32,6 +32,9 @@ See full instructions at http://mintplugins.com/doc/mp-stacks
 
 
 == Changelog ==
+
+= 1.0.0.9 = May 17, 2015
+* Make widget properly create it's ID for stack template based on time (when duplicated or created as part of an installed Stack Template)
 
 = 1.0.0.8 = May 16, 2015
 * Added functions which remove a Brick's Sidebar information from the Wp_options table when the Brick is deleted so that it isn't registered anymore.
