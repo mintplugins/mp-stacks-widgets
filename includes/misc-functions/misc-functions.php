@@ -13,6 +13,23 @@
  */
 
 /**
+ * Make Widgets Content Type Centered by default
+ *
+ * @access   public
+ * @since    1.0.0
+ * @param    $centered_content_types array - An array containing a string for each content-type that should default to centered brick alignment.
+ * @param    $centered_content_types array - An array containing a string for each content-type that should default to centered brick alignment.
+ */
+function mp_stacks_widgets_centered_by_default( $centered_content_types ){
+	
+	$centered_content_types['widgets'] = 'widgets';
+	
+	return $centered_content_types;
+	
+}
+add_filter( 'mp_stacks_centered_content_types', 'mp_stacks_widgets_centered_by_default' );
+
+/**
  * Unregister all sidebars if the URL variable to unset them is set. 
  * This is so that after, we can register a single sidebar on the brick's edit screen so there is no confusion about which sidebar is the right one.
  *
