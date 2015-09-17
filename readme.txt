@@ -3,8 +3,8 @@ Contributors: johnstonphilip
 Donate link: http://mintplugins.com/
 Tags: message bar, header
 Requires at least: 3.5
-Tested up to: 4.1
-Stable tag: 1.0.0.9
+Tested up to: 4.3
+Stable tag: 1.0.1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -32,6 +32,13 @@ See full instructions at http://mintplugins.com/doc/mp-stacks
 
 
 == Changelog ==
+
+= 1.0.1.0 = September 17, 2015
+* Make widget ajax in admin fire on "mp_stacks_content_type_change_complete" instead of "mp_stacks_content_type_change"
+* Admin Meta Scripts now enqueued only when needed.
+* Brick Metabox controls now load using ajax.
+* Set proper default for widgets per row to 3. Was previously inccorectly set to 2 per row was default.
+* Make Widgets Content Type alignment default to centered when new Bricks created or Widgets selected.
 
 = 1.0.0.9 = May 17, 2015
 * Make widget properly create it's ID for stack template based on time (when duplicated or created as part of an installed Stack Template)
