@@ -1,24 +1,20 @@
 jQuery(document).ready(function($){
 	
 	//Trigger the creation of the transient which, in turn, tells the widgets_init to register a sidebar for this brick	
-	$( document ).on( 'mp_stacks_content_type_change', function(event, content_type, post_id){
-		
-		event.preventDefault();
-		
+	$( document ).on( 'mp_stacks_content_type_change_complete', function( event, content_type, post_id, content_type_num ){
+				
 		//console.log(content_type);
 		
 		if ( content_type != "widgets" ){
 			return;
 		}
 		
-		//if there is no post id, this post hasn't been saved yet:
-		if ( post_id == '' ){
+		mp_stacks_widgets_brick_sidebar_id = $('#mp_stacks_widgets_brick_sidebar_id').val();
+				
+		//if there is no sidebar id yet, this widget content-type hasn't been saved yet:
+		if ( mp_stacks_widgets_brick_sidebar_id.length == 0 ){
 			//Create a unique id for this sidebar using the number of seconds since 1970
 			mp_stacks_widgets_brick_sidebar_id = 'mp_stacks_widgets_sidebar_id_' + ( new Date().getTime() / 1000 );
-		}
-		else{
-			//Get the sidebar's unique id from the hidden field for the sidebar id for this brick
-			mp_stacks_widgets_brick_sidebar_id = $('#mp_stacks_widgets_brick_sidebar_id').val();
 		}
 					
 		// Use ajax to trigger the creation of the transient
