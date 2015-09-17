@@ -7,7 +7,7 @@
  * @package    MP Stacks Widgets
  * @subpackage Functions
  *
- * @copyright  Copyright (c) 2014, Mint Plugins
+ * @copyright  Copyright (c) 2015, Mint Plugins
  * @license    http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @author     Philip Johnston
  */
@@ -24,6 +24,9 @@ function mp_stacks_brick_content_output_css_widgets( $css_output, $post_id, $fir
 	if ( $first_content_type != 'widgets' && $second_content_type != 'widgets' ){
 		return $css_output;	
 	}
+	
+	//Enqueue widgets CSS
+	wp_enqueue_style( 'mp_stacks_widgets_css', plugins_url( 'css/widgets.css', dirname( __FILE__ ) ), array(), MP_STACKS_WIDGETS_VERSION );
 	
 	//Get Features Metabox Repeater Array
 	$widgets_repeaters = get_post_meta( $post_id, 'mp_widgets_repeater', true );
@@ -134,8 +137,7 @@ function mp_stacks_brick_content_output_widgets($default_content_output, $mp_sta
 	$content_output = NULL;	
 		
 	//Widgetss per row
-	$widgets_per_row = get_post_meta($brick_id, 'widgets_per_row', true);
-	$widgets_per_row = empty( $widgets_per_row ) ? '2' : $widgets_per_row;
+	$widgets_per_row = mp_core_get_post_meta($brick_id, 'widgets_per_row', 3);
 	
 	ob_start(); 
 	
