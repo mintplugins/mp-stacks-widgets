@@ -32,47 +32,38 @@ function mp_stacks_brick_content_output_css_widgets( $css_output, $post_id, $fir
 	$widgets_repeaters = get_post_meta( $post_id, 'mp_widgets_repeater', true );
 	
 	//Get Widgets Per Row
-	$widgets_per_row = get_post_meta( $post_id, 'widgets_per_row', true );
-	$widgets_per_row = empty( $widgets_per_row ) ? 1 : $widgets_per_row;
+	$widgets_per_row = mp_core_get_post_meta( $post_id, 'widgets_per_row', 3 );
 	
 	//Widget Spacing Below Title
-	$widgets_title_bottom_margin = get_post_meta( $post_id, 'widgets_title_bottom_margin', true );
-	$widgets_title_bottom_margin = empty( $widgets_title_bottom_margin ) ? 'inherit' : $widgets_title_bottom_margin . 'px';
+	$widgets_title_bottom_margin = mp_core_get_post_meta( $post_id, 'widgets_title_bottom_margin', '10' );
 	
 	//Widget Spacing Below Each Widget Link
-	$widgets_text_bottom_margin = get_post_meta( $post_id, 'widgets_text_bottom_margin', true );
-	$widgets_text_bottom_margin = empty( $widgets_text_bottom_margin ) ? 'inherit' : $widgets_text_bottom_margin . 'px';
+	$widgets_text_bottom_margin = mp_core_get_post_meta( $post_id, 'widgets_text_bottom_margin', '5' );
 	
 	//Show Underlines?
-	$widgets_link_underlines = get_post_meta( $post_id, 'widgets_link_underlines', true );
-	$widgets_link_underlines = empty( $widgets_link_underlines ) ? 'none' : 'underline';
+	$widgets_link_underlines = mp_core_get_post_meta_checkbox( $post_id, 'widgets_link_underlines', false );
+	$widgets_link_underlines = $widgets_link_underlines ? 'underline' : 'none';
 	
 	//Title Color
-	$widgets_title_color = get_post_meta( $post_id, 'widgets_title_color', true );
-	$widgets_title_color = empty( $widgets_title_color ) ? 'inherit' : $widgets_title_color;
+	$widgets_title_color = mp_core_get_post_meta( $post_id, 'widgets_title_color' );
 	
 	//Title Size
-	$widgets_title_size = get_post_meta( $post_id, 'widgets_title_size', true );
-	$widgets_title_size = empty( $widgets_title_size ) ? 'inherit' : $widgets_title_size . 'px';
+	$widgets_title_size = mp_core_get_post_meta( $post_id, 'widgets_title_size', '25' );
 	
 	//Text Color
-	$widgets_text_color = get_post_meta( $post_id, 'widgets_text_color', true );
-	$widgets_text_color = empty( $widgets_text_color ) ? 'inherit' : $widgets_text_color . '';
+	$widgets_text_color = mp_core_get_post_meta( $post_id, 'widgets_text_color' );
 	
 	//Text Size
-	$widgets_text_size = get_post_meta( $post_id, 'widgets_text_size', true );
-	$widgets_text_size = empty( $widgets_text_size ) ? 'inherit' : $widgets_text_size . 'px';
+	$widgets_text_size = mp_core_get_post_meta( $post_id, 'widgets_text_size', '16' );
 	
 	//Text Line Height
-	$widgets_text_line_height = $widgets_text_size == 'inherit' ? 'inherit' : ( $widgets_text_size + $widgets_text_bottom_margin ) . 'px';
+	$widgets_text_line_height = empty( $widgets_text_size ) ? NULL : ( $widgets_text_size + $widgets_text_bottom_margin );
 	
 	//Link Color
-	$widgets_links_color = get_post_meta( $post_id, 'widgets_links_color', true );
-	$widgets_links_color = empty( $widgets_links_color ) ? 'inherit' : $widgets_links_color;
+	$widgets_links_color = mp_core_get_post_meta( $post_id, 'widgets_links_color' );
 	
 	//Link Hover Color
-	$widgets_links_hover_color = get_post_meta( $post_id, 'widgets_links_hover_color', true );
-	$widgets_links_hover_color = empty( $widgets_links_hover_color ) ? 'inherit' : $widgets_links_hover_color;
+	$widgets_links_hover_color = mp_core_get_post_meta( $post_id, 'widgets_links_hover_color' );
 	
 	//List Item Spacing
 	$widgets_list_item_spacing = mp_core_get_post_meta( $post_id, 'widgets_list_item_spacing', 15 );
@@ -85,33 +76,33 @@ function mp_stacks_brick_content_output_css_widgets( $css_output, $post_id, $fir
 		width:' . (100/$widgets_per_row) .'%;
 	}
 	#mp-brick-' . $post_id . ' .mp-stacks-widgets .mp-stacks-widgets-title{
-		font-size:' . $widgets_title_size .';
-		line-height:'  . $widgets_title_size .';
-		margin-bottom: ' . $widgets_title_bottom_margin . ';
-		color: ' . $widgets_title_color . ';
+		' . mp_core_css_line( 'font-size', $widgets_title_size, 'px' ) .'
+		' . mp_core_css_line( 'line-height', $widgets_title_size, 'px' ) .'
+		' . mp_core_css_line( 'margin-bottom', $widgets_title_bottom_margin, 'px' ) .'
+		' . mp_core_css_line( 'color', $widgets_title_color ) .'
 	}
 	#mp-brick-' . $post_id . ' .mp-stacks-widgets-item,
 	#mp-brick-' . $post_id . ' .mp-stacks-widgets-item div,
 	#mp-brick-' . $post_id . ' .mp-stacks-widgets-item p{
-		font-size:' . $widgets_text_size .';
-		line-height:'  . $widgets_text_line_height . ';
-		color: ' . $widgets_text_color . ';
+		' . mp_core_css_line( 'font-size', $widgets_text_size, 'px' ) .'
+		' . mp_core_css_line( 'line-height', $widgets_text_line_height, 'px' ) .'
+		' . mp_core_css_line( 'color', $widgets_text_color ) .'
 	}
 	#mp-brick-' . $post_id . ' ul{
 		list-style: ' .$list_bullet_points . ';
 	}
 	#mp-brick-' . $post_id . ' li{
-		margin-bottom:' . $widgets_list_item_spacing . 'px;	
+		' . mp_core_css_line( 'margin-bottom', $widgets_list_item_spacing, 'px' ) .'
 	}
 	#mp-brick-' . $post_id . ' .sub-menu li:first-child{
-		margin-top:' . $widgets_list_item_spacing . 'px;	
+		' . mp_core_css_line( 'margin-top', $widgets_list_item_spacing, 'px' ) .'
 	}
 	#mp-brick-' . $post_id . ' .mp-stacks-widgets-item li a{
-		color: ' . $widgets_links_color . ';
+		' . mp_core_css_line( 'color', $widgets_links_color ) .'
 		text-decoration: ' . $widgets_link_underlines . ';
 	}
 	#mp-brick-' . $post_id . ' .mp-stacks-widgets-item li a:hover{
-		color: ' . $widgets_links_hover_color . ';
+		' . mp_core_css_line( 'color', $widgets_links_hover_color ) .'
 	}';
 	
 	return $css_widgets_output . $css_output;
