@@ -65,7 +65,7 @@ function mp_stacks_widgets_register_sidebars(){
 			
 	//Get the registered sidebars
 	$mp_stacks_sidebars = get_option( 'mp_stacks_sidebar_args' );
-	
+		
 	//If our sidebar args have been set
 	if ( !empty( $mp_stacks_sidebars ) ){
 		foreach( $mp_stacks_sidebars as $mp_stacks_sidebar_args ){
@@ -96,12 +96,12 @@ function mp_stacks_widgets_set_sidebars_transient(){
 		return;	
 	}
 	
-	if( !session_id() )
-        session_start();
+	//This makes this session variable current to this blog only - in case we are dealing witgh multiple widgetized bricks on multi-site wordpresses.	
+	$current_blog_id = 'site-' . get_current_blog_id();
 		
-	if ( isset( $_SESSION['mp_stacks_widgets_refresh_on_next_frontendload'] ) && $_SESSION['mp_stacks_widgets_refresh_on_next_frontendload'] ){
+	if ( isset( $_SESSION[$current_blog_id]['mp_stacks_widgets_refresh_on_next_frontendload'] ) && $_SESSION[$current_blog_id]['mp_stacks_widgets_refresh_on_next_frontendload'] ){
 		
-		unset( $_SESSION['mp_stacks_widgets_refresh_on_next_frontendload'] );
+		unset( $_SESSION[$current_blog_id]['mp_stacks_widgets_refresh_on_next_frontendload'] );
 		
 		//Set the args for the new query
 		$mp_brick_args = array(
@@ -178,7 +178,7 @@ function mp_stacks_ajax_set_sidebars_transient(){
 	if( !session_id() )
         session_start();
 		
-	$_SESSION['mp_stacks_widgets_refresh_on_next_frontendload'] = true;
+	$_SESSION['site-' . get_current_blog_id()]['mp_stacks_widgets_refresh_on_next_frontendload'] = true;
 	
 	//Set the registered sidebars to be blank. We only need to show the sidebar for this brick on the next page load - which is all this affects.
 	$mp_stacks_sidebars = array();
@@ -318,3 +318,17 @@ function mp_stacks_widgets_upon_delete_brick($post_id) {
 
 }
 add_action( 'delete_post', 'mp_stacks_widgets_upon_delete_brick' );
+
+
+function m_stacks_widgets_start_session() {
+    if(!session_id()) {
+        session_start();
+    }
+}
+
+function m_stacks_widgets_end_session() {
+    session_destroy ();
+}
+add_action('init', 'm_stacks_widgets_start_session', 1);
+add_action('wp_logout', 'm_stacks_widgets_end_session');
+add_action('wp_login', 'm_stacks_widgets_end_session');
