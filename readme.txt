@@ -4,7 +4,7 @@ Donate link: http://mintplugins.com/
 Tags: message bar, header
 Requires at least: 3.5
 Tested up to: 4.3
-Stable tag: 1.0.1.0
+Stable tag: 1.0.1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -32,6 +32,10 @@ See full instructions at http://mintplugins.com/doc/mp-stacks
 
 
 == Changelog ==
+
+= 1.0.1.1 = October 8, 2015
+* Better defaults for widgets
+* Change how PHP Session is used and created
 
 = 1.0.1.0 = September 17, 2015
 * Make widget ajax in admin fire on "mp_stacks_content_type_change_complete" instead of "mp_stacks_content_type_change"
