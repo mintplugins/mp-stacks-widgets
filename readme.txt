@@ -33,6 +33,9 @@ See full instructions at http://mintplugins.com/doc/mp-stacks
 
 == Changelog ==
 
+= 1.0.1.2 = February 5 2016
+* Rather than removing the widgets from the wp_options table when editing a brick, we now only display the widget applied to the PHP session variable. This solves the issue of multiple brick widget areas making other ones dissapear sporadically.
+
 = 1.0.1.1 = October 8, 2015
 * Better defaults for widgets
 * Change how PHP Session is used and created
