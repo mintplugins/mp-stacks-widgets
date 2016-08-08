@@ -138,7 +138,12 @@ function mp_stacks_brick_content_output_widgets($default_content_output, $mp_sta
 	//Set counter to 0
 	$counter = 1;
 						
-	dynamic_sidebar( sanitize_title( "Brick: " . get_the_title( $brick_id ) ) ); 
+	$sidebar_found = dynamic_sidebar( mp_core_get_post_meta( $brick_id, 'mp_stacks_widgets_brick_sidebar_id', false ) ); 
+	
+	// Backwards Compatibility for old widget areas that were saved without an ID but just the title.
+	if ( !$sidebar_found ){
+		dynamic_sidebar( sanitize_title( "Brick: " . get_the_title( $brick_id ) ) ); 
+	}
 	
 	if ( $widgets_per_row == $counter ){
 		
