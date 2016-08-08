@@ -4,7 +4,7 @@ Donate link: http://mintplugins.com/
 Tags: message bar, header
 Requires at least: 3.5
 Tested up to: 4.3
-Stable tag: 1.0.1.1
+Stable tag: 1.0.1.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -32,6 +32,9 @@ See full instructions at http://mintplugins.com/doc/mp-stacks
 
 
 == Changelog ==
+
+= 1.0.1.3 = August 8, 2016
+* Make dynamic_sidebar try using side_id first and fallback to brick title sanitized if no sidebar found using ID. Solves conflict issue where two bricks had same exact name.
 
 = 1.0.1.2 = February 5 2016
 * Rather than removing the widgets from the wp_options table when editing a brick, we now only display the widget applied to the PHP session variable. This solves the issue of multiple brick widget areas making other ones dissapear sporadically.
