@@ -1,18 +1,18 @@
 jQuery(document).ready(function($){
-	
-	//Trigger the creation of the transient which, in turn, tells the widgets_init to register a sidebar for this brick	
-	$( document ).on( 'mp_stacks_content_type_change_complete', function( event, content_type, post_id, content_type_num ){
-				
-		//console.log(content_type);
-		
+	var post_id = mp_stacks_getQueryVariable('post');
+
+	getSidebar('widgets', post_id, false);
+
+	function getSidebar( content_type, post_id, content_type_num ){
+
 		if ( content_type != "widgets" ){
 			return;
 		}
-		
-		mp_stacks_widgets_brick_sidebar_id = $('#mp_stacks_widgets_brick_sidebar_id').val();
+
+		var mp_stacks_widgets_brick_sidebar_id = $('#mp_stacks_widgets_brick_sidebar_id').val();
 				
 		//if there is no sidebar id yet, this widget content-type hasn't been saved yet:
-		if ( mp_stacks_widgets_brick_sidebar_id.length == 0 ){
+		if ( ! mp_stacks_widgets_brick_sidebar_id ){
 			//Create a unique id for this sidebar using the number of seconds since 1970
 			mp_stacks_widgets_brick_sidebar_id = 'mp_stacks_widgets_sidebar_id_' + ( new Date().getTime() / 1000 );
 		}
@@ -43,6 +43,6 @@ jQuery(document).ready(function($){
 			console.log(data);
 		});	
 		
-	});
+	}
 	
 }); 
