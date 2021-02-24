@@ -3,8 +3,8 @@ Contributors: johnstonphilip
 Donate link: http://mintplugins.com/
 Tags: message bar, header
 Requires at least: 3.5
-Tested up to: 4.3
-Stable tag: 1.0.1.3
+Tested up to: 5.7
+Stable tag: 1.0.1.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -32,6 +32,9 @@ See full instructions at http://mintplugins.com/doc/mp-stacks
 
 
 == Changelog ==
+
+= 1.0.1.4 = February 23, 2021
+* Fix widgets not loading in Brick Editor.
 
 = 1.0.1.3 = August 8, 2016
 * Make dynamic_sidebar try using side_id first and fallback to brick title sanitized if no sidebar found using ID. Solves conflict issue where two bricks had same exact name.
